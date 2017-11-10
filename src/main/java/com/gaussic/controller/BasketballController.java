@@ -26,7 +26,7 @@ public class BasketballController  {
      * @return
      */
     //请求的路径，方式
-    @RequestMapping(value = "v1.0/new/{teamname}", method = RequestMethod.GET)
+    @RequestMapping(value = "v1.0/{teamname}", method = RequestMethod.GET)
     @ResponseBody
     public String foo4(@PathVariable String teamname, HttpServletRequest request) {
 
@@ -43,13 +43,34 @@ public class BasketballController  {
 
     /**
      * 直接返回对象，自动转化为JSON格式
-     * @param teamname
+     * @param aa
      * @param request
      * @return
      */
-    @RequestMapping(value = "v2.0/new/{teamname}", method = RequestMethod.GET)
+    @RequestMapping(value = "v2.0/{aa}", method = RequestMethod.GET)
     @ResponseBody
-    public Student foo5(@PathVariable String teamname, HttpServletRequest request) {
+    public Student foo5(@PathVariable String aa, HttpServletRequest request) {
+
+        //可以使用teamname获取url路径分隔
+
+        //获取请求的参数
+        String name = request.getParameter("name");
+        String age = request.getParameter("age");
+
+        Student student = new Student(name, age);
+
+        return student;
+    }
+
+    /**
+     * 直接返回对象，自动转化为JSON格式
+     * @param
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "v4.0", method = RequestMethod.GET)
+    @ResponseBody
+    public Student foo5(HttpServletRequest request) {
 
         //可以使用teamname获取url路径分隔
 
@@ -68,7 +89,7 @@ public class BasketballController  {
      * @param request
      * @return
      */
-    @RequestMapping(value = "v3.0/new/{teamname}", method = RequestMethod.GET)
+    @RequestMapping(value = "v3.0/{teamname}", method = RequestMethod.GET)
     @ResponseBody public List<Student> foo6(@PathVariable String teamname, HttpServletRequest request) {
 
         //可以使用teamname获取url路径分隔
